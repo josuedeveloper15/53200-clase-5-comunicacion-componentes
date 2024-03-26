@@ -1,16 +1,40 @@
+<!-- <app-my-modal (close)="modalVisible = false" [visible]="modalVisible" /> -->
+
+<app-my-modal [(visible)]="modalVisible">
+  <h1>Hola mundo</h1>
+
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum eius,
+  consequuntur quaerat ratione accusantium, reiciendis totam corporis ad quod
+  earum expedita similique neque obcaecati corrupti? Odit doloremque totam velit
+  facilis.
+
+  <hr />
+
+  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore dolorum
+  aperiam dignissimos veniam neque harum, dolorem fugit reprehenderit libero
+  inventore id minima molestiae temporibus vero officiis voluptatum possimus
+  recusandae dicta?
+</app-my-modal>
+
+<button (click)="modalVisible = true">+ Crear usuario</button>
+
 <h2>Usuarios aprobados</h2>
 
 <!--
 
   () -> queremos escuchar un evento de hijo a padre
   [] -> queremos enviar data de padre a hijo
+  [()] -> queremos establecer un enlace en dos direcciones (two way binding)
 
 -->
 
 <app-lista-usuarios
-  (deleteUser)="deleteUser()"
+  (deleteUser)="deleteUser($event, 'usuariosAprobados')"
   [usuarios]="usuariosAprobados"
 />
 
 <h2>Usuarios desaprobados</h2>
-<app-lista-usuarios [usuarios]="usuariosDesaprobados"></app-lista-usuarios>
+<app-lista-usuarios
+  (deleteUser)="deleteUser($event, 'usuariosDesaprobados')"
+  [usuarios]="usuariosDesaprobados"
+></app-lista-usuarios>

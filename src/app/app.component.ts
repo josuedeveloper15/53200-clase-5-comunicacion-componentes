@@ -8,6 +8,9 @@ import { Usuario } from './models';
 })
 export class AppComponent {
   title = 'clase-05';
+
+  modalVisible = false;
+
   usuariosAprobados: Usuario[] = [
     {
       firstName: 'Anna',
@@ -33,7 +36,20 @@ export class AppComponent {
     },
   ];
 
-  deleteUser(): void {
-    console.log('Recibimos el evento deleteUser');
+  deleteUser(
+    index: number,
+    arrayName: 'usuariosAprobados' | 'usuariosDesaprobados'
+  ): void {
+    console.log('Vamos a eliminar el usuario en la posicion: ' + index);
+
+    if (arrayName === 'usuariosAprobados') {
+      this.usuariosAprobados = this.usuariosAprobados.filter(
+        (el, i) => i !== index
+      );
+    } else {
+      this.usuariosDesaprobados = this.usuariosDesaprobados.filter(
+        (el, i) => i !== index
+      );
+    }
   }
 }

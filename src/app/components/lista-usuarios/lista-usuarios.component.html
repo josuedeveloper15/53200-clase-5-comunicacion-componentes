@@ -6,9 +6,9 @@
   Manejan la state (estado de la informacion).
 -->
 
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let usuario of usuarios">
+<ul #myList class="list-group">
+  <li class="list-group-item" *ngFor="let usuario of usuarios; let i = index">
     {{ usuario.firstName + " " + usuario.lastName }}
-    <button (click)="deleteUser.emit()" class="btn btn-danger">X</button>
+    <button (click)="deleteUser.emit(i)" class="btn btn-danger">X</button>
   </li>
 </ul>
